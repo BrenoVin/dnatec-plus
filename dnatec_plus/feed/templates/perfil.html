@@ -2,16 +2,14 @@
 {% block  conteudo %}
 	<h2> olá {{nome}} :D</h2>
 	<a href="/logout/">Sair</a>
-		<br><br>
-
+		<br>
 		<form action="/salvar/" method='post'>
 			{% csrf_token %}
-			<p>O que se passa em seu mundo?<br><input type="area" name="conteudo" /></p>
-		<input type="submit">
+			<p>O que se passa em seu mundo?<br><input type="text" name="conteudo" />
+		<input type="submit" value="Postar"></p>
 	</form>
-		
-		<br><br>
-	<p>Feed</p>
+	
+	<h3>Feed</h3>
 	<ul>
 	{% for m in mensagens %}
 		<li>{{m}}</li>
@@ -20,11 +18,10 @@
 	</ul>	
 	<form action="/buscar/" method='post'>
 			{% csrf_token %}
-			<p>Pesquisar amigo<br><input type="text" name="busca" /></p>
-		<input type="submit" value="Buscar">
+			<p>Pesquisar amigo<br><input type="text" name="busca" />
+		<input type="submit" value="Buscar"></p>
 	</form>
-	<br><br>
-	<p>Amigos</p>
+	<h3>Amigos</h3>
 
 	<ul>
 	{% for a in amigos %}
@@ -33,12 +30,11 @@
 	{% endfor %}
 	
 	</ul>
-	<br><br>
-	<p>Timeline</p>
+	<h3>O que está acontecendo:</h3>
 
 	<ul>
 	{% for t in timeline %}
-		<li>{{ t.user }} diz: {{t}}</li>
+		<li><b>{{ t.user }} diz:</b> {{t}}</li>
 		<br>
 	{% endfor %}
 	</ul>
