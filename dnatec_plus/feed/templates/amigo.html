@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block  conteudo %}
+	<h3>{{user.nome}}</h3>
+	<br>
+	<h5>{{user.email}}</h5>
+	<a href="/perfil/">Meu perfil</a>
+	<br>
+	<form action="/add/{{user.id}}/" method='post'>
+		{% csrf_token %}
+		<input type="submit" value="adicionar amigo" />
+	</form>
+	<form action="/rm/{{user.id}}/" method='post'>
+		{% csrf_token %}
+		<input type="submit" value="remover amigo" />
+	</form>
+	<br><br>
+	<ul>
+	{% for m in msg %}
+		<li>{{m}}</li>
+		<br>
+	{% endfor %}
+	</ul>
+<br><br>
+	<ul>
+	{% for a in amigos %}
+		<li><a href="/amigo/{{a.id}}">{{a}}</a></li>
+		<br>
+	{% endfor %}
+	
+	</ul>
+{% endblock %}

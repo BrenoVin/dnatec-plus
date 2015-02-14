@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block conteudo %}
+<h3>Login</h3>
+<form action='/validar/' method='post'>
+	{% csrf_token %}
+	<p>Nome: <input type='text' name='nome' required/></p>
+	<p>Senha: <input type='password' name='senha' required/></p>
+	<input type='submit' value="Entrar"  />
+
+</form>
+<br><br>
+<h3>Cadastro</h3>
+<form action='/cadastrar/' method='post'>
+	{% csrf_token %}
+	<p>Nome: <input type='text' name='nome' required/></p>
+	<p>Email: <input type='text' name='email' required/></p>
+	<p>Senha: <input type='password' name='senha' required/></p>
+	<input type='submit' value="Cadastrar" />
+
+</form>
+
+{% endblock %}

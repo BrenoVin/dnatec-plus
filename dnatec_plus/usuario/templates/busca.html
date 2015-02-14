@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block  conteudo %}
+	<h3>Resultado da Busca:</h3>
+	<ul>
+	{% for a in lista %}
+		<li><a href="/amigo/{{a.id}}">{{a}}</a></li>
+		<br>
+	{% endfor %}
+	
+	</ul>
+{% endblock %}
