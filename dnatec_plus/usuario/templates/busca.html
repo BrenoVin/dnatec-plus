@@ -1,6 +1,81 @@
 {% extends 'layout.html' %}
+{% block estilos %}
+<style type="text/css">
+	*{
+		font-family: Bookman, serif
+	}
+	body{
+		margin-top: -20px;
+
+	}
+	#titulo{
+		position: fixed;
+		text-align: center;
+		width: 100%;
+		z-index: 2;
+		background-color: orange;
+		margin: 0px 0px 0px -8px;
+		font-family: Florence, cursive;
+		color: white;
+		box-shadow: 3px 3px 17px 0px rgba(255, 134, 0, 1);
+	}
+	#pag{
+		margin: 20px auto;
+		width: 80%;
+
+	}
+	#pessoas{
+		margin: 50px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left:30px;
+		box-shadow:-4px 0px 0px 0px rgba(255, 134, 0, 0.54);
+	}
+	#posts{
+		margin: 50px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left: 30px;
+		box-shadow:-4px 0px 0px 0px rgba(255, 134, 0, 0.54);
+	}
+	.imp{
+		text-transform: capitalize;
+		color: #FF3300;
+	}
+	
+	ul{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+		text-transform: capitalize;
+	}
+	a:hover{
+		color:#CC6600;	 
+		text-decoration: underline;
+	}
+	#voltar{
+		position: absolute;
+		display: block;
+		float: left;
+		margin: 50px 0 0 0;
+		padding:2px;
+		z-index: 1;
+	}
+
+</style>
+{% endblock %}
 {% block  conteudo %}
-	<h3>Resultado da Busca:</h3>
+<form id="voltar" action="/perfil/" method='post'>
+		{% csrf_token %}
+<input type="submit" value="Meu Perfil" />
+	</form>
+<div id="pag">
+<div id="pessoas">
+	<h3 class="imp">Resultado da Busca:</h3>
 	<ul>
 	{% for a in lista %}
 		<li><a href="/amigo/{{a.id}}">{{a}}</a></li>
@@ -8,4 +83,6 @@
 	{% endfor %}
 	
 	</ul>
+	</div>
+</div>
 {% endblock %}

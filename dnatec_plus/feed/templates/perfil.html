@@ -1,43 +1,121 @@
 {% extends 'layout.html' %}
+{% block estilos %}
+<style type="text/css">
+	*{
+		font-family: Bookman, serif
+	}
+	body{
+		margin-top: -20px;
+
+	}
+	#titulo{
+		position: fixed;
+		text-align: center;
+		width: 100%;
+		z-index: 2;
+		background-color: orange;
+		margin: 0px 0px 0px -8px;
+		font-family: Florence, cursive;
+		color: white;
+		box-shadow: 3px 3px 17px 0px rgba(255, 134, 0, 1);
+	}
+	#pag{
+		margin: 20px auto;
+		width: 90%;
+
+	}
+	#perfil{
+		margin: 50px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left:30px;
+		box-shadow:-4px 0px 0px 0px rgba(255, 134, 0, 0.54);
+	}
+	#amigos{
+		margin: 50px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left: 30px;
+		box-shadow:-4px 0px 0px 0px rgba(255, 134, 0, 0.54);
+	}
+	#sair{
+		position: absolute;
+		display: block;
+		float: left;
+		margin: 50px 0 0 30px;
+		padding:2px;
+		z-index: 1;
+	}
+	.imp{
+		text-transform: capitalize;
+		color: #FF3300;
+	}
+	.pes{
+		text-transform: capitalize;
+		font-weight: bolder;
+		color: #CC6600;	
+	}
+	ul{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	a:hover{
+		color:#CC6600;	 
+		text-decoration: underline;
+	}
+</style>
+{% endblock %}
 {% block  conteudo %}
-	<h2> olá {{nome}} :D</h2>
-	<a href="/logout/">Sair</a>
-		<br>
-		<form action="/salvar/" method='post'>
-			{% csrf_token %}
-			<p>O que se passa em seu mundo?<br><input type="text" name="conteudo" />
-		<input type="submit" value="Postar"></p>
-	</form>
+
+<div id="sair"><a href="/logout/">Sair</a></div>
+
+<div id="pag">
+	<div id="perfil">
+	 <h2 class="imp"> olá, {{nome}}.</h2>
+	  <br>
+	   <form action="/salvar/" method='post'>
+		{% csrf_token %}
+		<p>O que se passa em seu mundo?<br><input type="text" name="conteudo" />
+	    <input type="submit" value="Postar"></p>
+	   </form>
 	
-	<h3>Feed</h3>
-	<ul>
-	{% for m in mensagens %}
-		<li>{{m}}</li>
+	<h3 class="imp">Feed</h3>
+	 <ul>
+	  {% for m in mensagens %}
+	   <li>{{m}}</li>
 		<br>
-	{% endfor %}
-	</ul>	
-	<form action="/buscar/" method='post'>
-			{% csrf_token %}
-			<p>Pesquisar amigo<br><input type="text" name="busca" />
-		<input type="submit" value="Buscar"></p>
-	</form>
-	<h3>Amigos</h3>
-
-	<ul>
-	{% for a in amigos %}
-		<li><a href="/amigo/{{a.id}}">{{a}}</a></li>
-		<br>
-	{% endfor %}
+	   {% endfor %}
+	 </ul>
+    </div>
 	
-	</ul>
-	<h3>O que está acontecendo:</h3>
+	<div id="amigos">
+		<form action="/buscar/" method='post'>
+		 {% csrf_token %}
+		 <p>Pesquisar amigo<br><input type="text" name="busca" />
+		 <input type="submit" value="Buscar"></p>
+		</form>
+		<h3 class="imp">Amigos</h3>
+		<ul>
+		 {% for a in amigos %}
+		 <li><a href="/amigo/{{a.id}}">{{a}}</a></li>
+		 <br>
+		{% endfor %}
+	
+		</ul>
+		<h3 class="imp">O que está acontecendo?</h3>
 
-	<ul>
-	{% for t in timeline %}
-		<li><b>{{ t.user }} diz:</b> {{t}}</li>
-		<br>
-	{% endfor %}
-	</ul>
-
+		<ul>
+		 {% for t in timeline %}
+		  <li><span class="pes">{{ t.user }} diz:</span>  {{t}}</li>
+		  <br>
+		 {% endfor %}
+	 	</ul>
+	</div>
+</div>
 
 {% endblock %}

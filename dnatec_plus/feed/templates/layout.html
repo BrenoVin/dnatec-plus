@@ -2,14 +2,16 @@
 <html>
 	<head>
 	<title>DNATEC plus</title>
-	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}styles.css">
 	<meta charset='UTF-8'>
+	{% block estilos %}
+	{% endblock %}
+
 	
 	</head>
 	<body>
 	 <section>
 	  <div id="body">
-	   <h1>DNATEC plus</h1>
+	   <h1 id="titulo">DNATEC plus</h1>
 		
 	    {% block conteudo %}
 		{% endblock %}

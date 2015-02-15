@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include, url,static
 from django.contrib import admin
 
 urlpatterns = patterns('',
@@ -25,6 +25,4 @@ urlpatterns = patterns('',
 
 	url(r'^rm/(?P<u_id>\d+)/$','usuario.views.rm'),
 
-
-
-)
+) 

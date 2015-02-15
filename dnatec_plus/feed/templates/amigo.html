@@ -1,31 +1,111 @@
 {% extends 'layout.html' %}
-{% block  conteudo %}
-	<h3>{{user.nome}}</h3>
-	<h5>email: {{user.email}}</h5>
-	<a href="/perfil/">Meu perfil</a>
-	<br><br>
-	<form action="/add/{{user.id}}/" method='post'>
-		{% csrf_token %}
-		<input type="submit" value="adicionar amigo" />
-	</form>
-	<br>
-	<form action="/rm/{{user.id}}/" method='post'>
-		{% csrf_token %}
-		<input type="submit" value="remover amigo" />
-	</form>
-	<br>
-	<h3>Postagens</h3>
-	<ul>
-	{% for m in msg %}
-		<li>{{m}}</li>
-	{% endfor %}
-	</ul><br>
-	<h3>Amigos</h3>
-	<ul>
-	{% for a in amigos %}
-		<li><a href="/amigo/{{a.id}}">{{a}}</a></li>
-		<br>
-	{% endfor %}
+{% block estilos %}
+<style type="text/css">
+	*{
+		font-family: Bookman, serif
+	}
+	body{
+		margin-top: -20px;
+
+	}
+	#titulo{
+		position: fixed;
+		text-align: center;
+		width: 100%;
+		z-index: 2;
+		background-color: orange;
+		margin: 0px 0px 0px -8px;
+		font-family: Florence, cursive;
+		color: white;
+		box-shadow: 3px 3px 17px 0px rgba(255, 134, 0, 1);
+	}
+	#pag{
+		margin: 20px auto;
+		width: 80%;
+
+	}
+	#perfil{
+		margin: 50px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left:30px;
+		box-shadow:-4px 0px 0px 0px rgba(255, 134, 0, 0.54);
+	}
+	#posts{
+		margin: 50px;
+		position: relative;
+		display: block;
+		float: left;
+		padding-left: 30px;
+		box-shadow:-4px 0px 0px 0px rgba(255, 134, 0, 0.54);
+	}
+	.imp{
+		text-transform: capitalize;
+		color: #FF3300;
+	}
 	
-	</ul>
+	ul{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+		text-transform: capitalize;
+	}
+	a:hover{
+		color:#CC6600;	 
+		text-decoration: underline;
+	}
+	#voltar{
+		position: absolute;
+		display: block;
+		float: left;
+		margin: 50px 0 0 0;
+		padding:2px;
+		z-index: 1;
+	}
+
+</style>
+{% endblock %}
+{% block  conteudo %}
+<form id="voltar" action="/perfil/" method='post'>
+		{% csrf_token %}
+			<input type="submit" value="Meu Perfil" />
+	</form>
+<div id="pag">
+	
+	<div id="perfil">
+
+		<h2 class="imp">{{user.nome}}</h2>
+		<h5>email: {{user.email}}</h5>
+		
+		<br>
+		<form action="/add/{{user.id}}/" method='post'>
+		{% csrf_token %}
+			<input type="submit" value="adicionar amigo" />
+		</form>
+			<br>
+		<form action="/rm/{{user.id}}/" method='post'>
+			{% csrf_token %}
+			<input type="submit" value="remover amigo" />
+		</form>
+	</div>
+	<div id="posts">
+		<h3 class="imp">Postagens</h3>
+		<ul>
+		{% for m in msg %}
+			<li>{{m}}</li>
+		{% endfor %}
+		</ul><br>
+		<h3 class="imp">Amigos</h3>
+		<ul>
+		{% for a in amigos %}
+			<li><a href="/amigo/{{a.id}}">{{a}}</a></li>
+			<br>
+		{% endfor %}
+		
+		</ul>
+	</div>
+</div>
 {% endblock %}
